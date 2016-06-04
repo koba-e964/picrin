@@ -25,11 +25,13 @@ foreach my $file (@ARGV) {
     my $src = <IN>;
     close IN;
 
+    $src =~ s/\r//g;
+
+    # Each literal has exactly 80 characters, so that they can be viewed as a long string literal (in memory, they are concatenated).
     my @lines = $src =~ /.{0,80}/gs;
     foreach (@lines) {
         s/\\/\\\\/g;
         s/"/\\"/g;
-	s/\r//g;
         s/\n/\\n/g;
         print "\"$_\",\n";
     }
