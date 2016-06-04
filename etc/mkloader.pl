@@ -29,6 +29,7 @@ foreach my $file (@ARGV) {
     foreach (@lines) {
         s/\\/\\\\/g;
         s/"/\\"/g;
+	s/\r//g;
         s/\n/\\n/g;
         print "\"$_\",\n";
     }
